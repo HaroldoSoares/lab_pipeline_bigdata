@@ -1,0 +1,4 @@
+segment,total_transacoes,valor_total,ticket_medio,qtd_fraudes,taxa_fraude_pct,valor_em_risco
+Premium,61156,11235041.58,183.71,473,0.77,81308.44
+High-Risk,9155,1664640.24,181.83,705,7.7,126451.07
+Standard,29689,5479399.85,184.56,655,2.21,106828.42
