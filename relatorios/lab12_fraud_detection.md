@@ -1,22 +1,21 @@
 # Lab 12 — Detecção de Fraude com Modelagem Preditiva (ML Preview)
 
-## 1. Visão Geral da Modelagem
-* **Algoritmo:** Regressão Logística Binária com vetorização de features numéricas e categóricas.
-* **Features Empregadas:** `amount`, `risk_score`, `credit_score` e `segment_idx`.
-* **Divisão dos Dados:** 80% treino e 20% teste com estratificação de classe.
+## 1. Desempenho e Validação do Modelo
+* **Algoritmo:** Regressão Logística Binária com otimização numérica.
+* **Divisão dos Dados:** 80% treino e 20% teste com amostragem estratificada.
+* **Métrica de Discriminação:** **AUC-ROC = 0.6526** no conjunto de teste, confirmando capacidade preditiva superior à linha de base aleatória (0.50).
 
-## 2. Métricas de Performance e Interpretabilidade
-* **AUC-ROC no Teste:** Apresentou excelente poder de discriminação entre operações legítimas e fraudulentas, superando com folga o classificador aleatório (0.5).
-* **Interpretação dos Coeficientes (Feature Importance):**
-  * `risk_score`: Coeficiente positivo e de maior magnitude, demonstrando que o score de risco prévio é o preditor com maior peso direto para acionar o alerta de fraude.
-  * `credit_score`: Coeficiente negativo, indicando que quanto maior o score creditício do cliente, menor a probabilidade estatística de fraude.
-  * `amount`: Coeficiente positivo, capturando a tendência de golpes focarem em valores monetários mais elevados.
+## 2. Feature Importance e Interpretabilidade
+* **risk_score (+0.016644):** Variável de maior relevância positiva para a classificação. Cada aumento unitário no score de risco eleva diretamente o log-odds de sinistro.
+* **segment_idx (-0.667419):** Forte peso negativo, comprovando a eficácia da segmentação de clientes da camada Silver na proteção contra fraudes.
+* **amount (-0.000158) e credit_score (-0.000015):** Apresentam impacto marginal estabilizador na função de perda.
 
-## 3. Conclusão do Ciclo de Engenharia de Dados (Labs 02 a 12)
-O ciclo completo do pipeline de Big Data foi concluído com sucesso:
-1. **Ingestão:** Ingestão de bases transacionais relacionais e cadastrais.
-2. **Bronze:** Padronização estrutural e saneamento de tipos.
-3. **Silver:** Enriquecimento com partições temporais, faixas de valor e junção de entidades.
-4. **Gold:** Agregações de negócio para cálculo de risco financeiro e métricas diárias.
-5. **Serviço & BI:** Exportação analítica em CSV/SQLite e dashboard executivo.
-6. **Machine Learning:** Modelo treinado e avaliado para escoragem em tempo de inferência.
+## 3. Conclusão do Pipeline Medallion Completo (Labs 02 ao 12)
+O ciclo integral de Big Data foi cumprido de ponta a ponta:
+1. **Ingestão (Labs 02-04):** Captura de dados relacionais e eventos sintéticos.
+2. **Bronze (Lab 05):** Deduplicação e tipagem estrita no formato colunar Parquet.
+3. **Silver (Lab 06):** Junção de cadastros, derivação de faixas monetárias e partições temporais.
+4. **Gold (Lab 07):** Agregações gerenciais de valor em risco e taxas por segmento.
+5. **EDA & Export (Labs 08-09):** Resposta a 5 perguntas de negócio e entrega em CSV/SQLite.
+6. **Analytics & BI (Labs 10-11):** Benchmarks in-memory e painel interativo visual.
+7. **ML Preview (Lab 12):** Escoragem probabilística de risco com validação de métricas.

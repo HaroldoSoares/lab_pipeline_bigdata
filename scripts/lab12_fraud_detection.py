@@ -35,9 +35,11 @@ def train_fraud_model():
     y_prob = lr.predict_proba(X_test)[:, 1]
     auc = roc_auc_score(y_test, y_prob)
 
-    print(f"Modelo finalizado. AUC: {auc:.4f}")
+    print(f"Modelo treinado com sucesso. AUC no teste: {auc:.4f}")
+    print("\nFeature Importance (Coeficientes):")
     for col, coef in zip(feature_cols, lr.coef_[0]):
-        print(f"Feature: {col} | Coeficiente: {coef:.6f}")
+        print(f"{col:15s}: {coef:+.6f}")
+    print(f"Intercept       : {lr.intercept_[0]:+.6f}")
 
 if __name__ == '__main__':
     train_fraud_model()
