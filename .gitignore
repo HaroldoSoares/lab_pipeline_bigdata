@@ -1,6 +1,4 @@
-.venv/
+bigdata/
+scripts/bi_db.sqlite
 __pycache__/
 *.pyc
-.ipynb_checkpoints/
-derby.log
-metastore_db/
